@@ -1,13 +1,25 @@
 {
   "name": "sticky-notes",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "description": "Your notes, always in sight. Sticky notes that float above your other windows.",
+  "license": "MIT",
+  "author": "Om Jain (https://omjain.com)",
+  "keywords": [
+    "sticky-notes",
+    "notes",
+    "always-on-top",
+    "picture-in-picture",
+    "local-first",
+    "offline",
+    "privacy"
+  ],
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview --port 4173"
   },
   "dependencies": {
     "idb": "^8.0.3",

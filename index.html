@@ -5,7 +5,15 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light dark" />
+    <!--#lockdown--><!-- the production build injects the Content Security Policy here -->
     <title>Sticky notes</title>
+    <meta
+      name="description"
+      content="Your notes, always in sight. Sticky notes that float above your other windows. Stored in your browser, never sent anywhere."
+    />
+    <!-- The production build also injects a Content Security Policy with
+         connect-src 'none', so the page cannot make a network request at all.
+         See the lockdown plugin in vite.config.ts. -->
     <!-- Stylesheets are adopted by script (they are shared with the floating
          window), so the desk colour is inlined to avoid a flash of white. -->
     <style>

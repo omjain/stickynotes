@@ -47,6 +47,11 @@ export function useFloatingError(): string | null {
   return useStore(floating.store, (state) => state.error)
 }
 
+// Deliberately local. Moving this component to its own file would make it
+// import the `floating` singleton defined here, while the mount closure above
+// already renders it — keeping both in one module is what avoids that cycle.
+// The cost is only React Fast Refresh in development.
+// eslint-disable-next-line react/only-export-components
 function FloatingRoot() {
   const noteId = useFloatingNoteId()
   const note = useStore(notes.store, (state) =>

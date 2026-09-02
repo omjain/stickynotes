@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" role="img" aria-label="The Sticky notes workspace: three notes laid out on a desk">
+  <title>The workspace — notes laid out like paper on a desk</title>
+
+  <style>
+    :root {
+      --desk: #f2efe9; --ink: #2b2925; --inkSoft: #8b8478;
+      --edge: rgba(43,41,37,.10); --raise: #fbfaf7;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --desk: #1a1917; --ink: #e9e5dd; --inkSoft: #8b857a;
+        --edge: rgba(233,229,221,.11); --raise: #24231f;
+      }
+    }
+    .desk { fill: var(--desk) }
+    .ink { fill: var(--ink) }
+    .inkSoft { fill: var(--inkSoft) }
+    .edge { stroke: var(--edge) }
+    .raise { fill: var(--raise) }
+  </style>
+
+  <defs>
+    <linearGradient id="sheen2" x1="0" y1="0" x2="0.04" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".42" />
+      <stop offset="0.44" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+    <filter id="paper2" x="-25%" y="-25%" width="150%" height="165%">
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#2b2118" flood-opacity=".16" />
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#2b2118" flood-opacity=".14" />
+    </filter>
+    <filter id="chip" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-color="#3c3224" flood-opacity=".10" />
+    </filter>
+  </defs>
+
+  <rect class="desk" x="0" y="0" width="1200" height="500" rx="16" />
+  <rect class="edge" x="0.5" y="0.5" width="1199" height="499" rx="16" fill="none" />
+
+  <!-- The whole interface: a title, a hint, and one button. -->
+  <g font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+    <text class="ink" x="66" y="62" font-size="17" font-weight="600" letter-spacing=".2">Sticky notes</text>
+
+    <rect class="edge" x="196" y="47" width="21" height="19" rx="5" fill="none" />
+    <text class="inkSoft" x="202" y="61" font-size="12" font-weight="500">N</text>
+    <text class="inkSoft" x="225" y="61" font-size="13.5">for a new note</text>
+    <text class="inkSoft" x="322" y="61" font-size="13.5">·</text>
+    <rect class="edge" x="336" y="47" width="20" height="19" rx="5" fill="none" />
+    <text class="inkSoft" x="342" y="61" font-size="12" font-weight="500">F</text>
+    <text class="inkSoft" x="364" y="61" font-size="13.5">to float it</text>
+
+    <g filter="url(#chip)">
+      <rect class="raise" x="992" y="40" width="142" height="38" rx="9" />
+    </g>
+    <rect class="edge" x="992.5" y="40.5" width="141" height="37" rx="9" fill="none" />
+    <text class="ink" x="1017" y="64" font-size="13.5" font-weight="500">+ New note</text>
+  </g>
+
+  <g font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+
+    <!-- TODAY -->
+    <g transform="rotate(-1.1 234 270)">
+      <g filter="url(#paper2)"><rect x="66" y="120" width="336" height="300" rx="4" fill="#fbf1b0" /></g>
+      <rect x="66" y="120" width="336" height="300" rx="4" fill="url(#sheen2)" />
+      <text x="90" y="156" font-size="12" font-weight="600" letter-spacing="1.1" fill="#4a411d">TODAY</text>
+      <line x1="90" y1="171" x2="378" y2="171" stroke="#4a411d" stroke-opacity=".14" />
+      <g font-size="15" fill="#4a411d">
+        <rect x="90" y="196" width="14" height="14" rx="3.5" fill="none" stroke="#4a411d" stroke-opacity=".34" stroke-width="1.6" />
+        <text x="118" y="208">Fix pixel issue</text>
+        <rect x="90" y="230" width="14" height="14" rx="3.5" fill="none" stroke="#4a411d" stroke-opacity=".34" stroke-width="1.6" />
+        <text x="118" y="242">Reply to client</text>
+        <rect x="90" y="264" width="14" height="14" rx="3.5" fill="#4a411d" fill-opacity=".12" stroke="#4a411d" stroke-opacity=".34" stroke-width="1.6" />
+        <path d="M93.5 271.3 L97.4 275.2 L101.3 267.6" fill="none" stroke="#4a411d" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+        <text x="118" y="276" fill-opacity=".5">Deploy MCP</text>
+        <line x1="118" y1="271.5" x2="205" y2="271.5" stroke="#4a411d" stroke-opacity=".45" stroke-width="1.5" />
+        <text x="90" y="316" fill-opacity=".92">→ ask design about tracking</text>
+      </g>
+    </g>
+
+    <!-- PERSONAL -->
+    <g transform="rotate(0.65 600 270)">
+      <g filter="url(#paper2)"><rect x="432" y="120" width="336" height="300" rx="4" fill="#fbdcdb" /></g>
+      <rect x="432" y="120" width="336" height="300" rx="4" fill="url(#sheen2)" />
+      <text x="456" y="156" font-size="12" font-weight="600" letter-spacing="1.1" fill="#573738">PERSONAL</text>
+      <line x1="456" y1="171" x2="744" y2="171" stroke="#573738" stroke-opacity=".14" />
+      <g font-size="15" fill="#573738">
+        <rect x="456" y="196" width="14" height="14" rx="3.5" fill="none" stroke="#573738" stroke-opacity=".34" stroke-width="1.6" />
+        <text x="484" y="208">Buy groceries</text>
+        <rect x="456" y="230" width="14" height="14" rx="3.5" fill="none" stroke="#573738" stroke-opacity=".34" stroke-width="1.6" />
+        <text x="484" y="242">Call John</text>
+        <rect x="456" y="264" width="14" height="14" rx="3.5" fill="none" stroke="#573738" stroke-opacity=".34" stroke-width="1.6" />
+        <text x="484" y="276">Book the dentist</text>
+      </g>
+    </g>
+
+    <!-- READING -->
+    <g transform="rotate(-0.55 966 270)">
+      <g filter="url(#paper2)"><rect x="798" y="120" width="336" height="300" rx="4" fill="#d7e5f4" /></g>
+      <rect x="798" y="120" width="336" height="300" rx="4" fill="url(#sheen2)" />
+      <text x="822" y="156" font-size="12" font-weight="600" letter-spacing="1.1" fill="#2c4257">READING</text>
+      <line x1="822" y1="171" x2="1110" y2="171" stroke="#2c4257" stroke-opacity=".14" />
+      <g font-size="15" fill="#2c4257">
+        <text x="822" y="208">The Timeless Way of Building</text>
+        <text x="822" y="242">Seeing Like a State</text>
+        <text x="822" y="286" fill-opacity=".55">IMPORTANT</text>
+        <text x="822" y="316" fill-opacity=".92">Don’t forget this one.</text>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-label="A sticky note floating on top of a code editor, with a task being ticked off">
+  <title>A sticky note staying visible on top of a code editor</title>
+
+  <style>
+    :root { --desk: #efece6; --edge: rgba(43,41,37,.10); }
+    @media (prefers-color-scheme: dark) {
+      :root { --desk: #171614; --edge: rgba(233,229,221,.10); }
+    }
+    .desk { fill: var(--desk); }
+    .deskEdge { stroke: var(--edge); }
+
+    .boxFill { opacity: 0; animation: fill 9s ease-in-out infinite; }
+    .check   { stroke-dasharray: 18; stroke-dashoffset: 18; animation: draw 9s ease-in-out infinite; }
+    .strike  { stroke-dasharray: 92; stroke-dashoffset: 92; animation: cross 9s ease-in-out infinite; }
+    .doneText { animation: dim 9s ease-in-out infinite; }
+
+    @keyframes fill  { 0%,24% { opacity: 0 }            30%,88% { opacity: 1 }            96%,100% { opacity: 0 } }
+    @keyframes draw  { 0%,24% { stroke-dashoffset: 18 } 34%,88% { stroke-dashoffset: 0 }  96%,100% { stroke-dashoffset: 18 } }
+    @keyframes cross { 0%,32% { stroke-dashoffset: 92 } 44%,88% { stroke-dashoffset: 0 }  96%,100% { stroke-dashoffset: 92 } }
+    @keyframes dim   { 0%,32% { opacity: 1 }            46%,88% { opacity: .5 }           96%,100% { opacity: 1 } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .boxFill  { opacity: 1; animation: none }
+      .check    { stroke-dashoffset: 0; animation: none }
+      .strike   { stroke-dashoffset: 0; animation: none }
+      .doneText { opacity: .5; animation: none }
+    }
+  </style>
+
+  <defs>
+    <linearGradient id="sheen" x1="0" y1="0" x2="0.04" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".45" />
+      <stop offset="0.44" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+    <filter id="paperShadow" x="-25%" y="-25%" width="150%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="9" flood-color="#2b2118" flood-opacity=".22" />
+      <feDropShadow dx="0" dy="22" stdDeviation="26" flood-color="#2b2118" flood-opacity=".20" />
+    </filter>
+    <filter id="windowShadow" x="-15%" y="-15%" width="130%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#000000" flood-opacity=".22" />
+    </filter>
+    <clipPath id="browserClip"><rect x="700" y="24" width="460" height="300" rx="12" /></clipPath>
+  </defs>
+
+  <rect class="desk" x="0" y="0" width="1200" height="620" rx="16" />
+  <rect class="deskEdge" x="0.5" y="0.5" width="1199" height="619" rx="16" fill="none" />
+
+  <!-- The browser, sitting behind everything: the app it came from is out of the way. -->
+  <g clip-path="url(#browserClip)">
+    <rect x="700" y="24" width="460" height="300" rx="12" fill="#faf8f4" />
+    <rect x="700" y="24" width="460" height="34" fill="#eeebe4" />
+    <rect x="924" y="36" width="120" height="16" rx="8" fill="#dcd8ce" />
+    <g>
+      <rect x="940" y="82" width="94" height="86" rx="4" fill="#fbf1b0" />
+      <rect x="950" y="94" width="40" height="5" rx="2.5" fill="#4a411d" fill-opacity=".5" />
+      <rect x="950" y="110" width="66" height="4" rx="2" fill="#4a411d" fill-opacity=".22" />
+      <rect x="950" y="122" width="52" height="4" rx="2" fill="#4a411d" fill-opacity=".22" />
+      <rect x="950" y="134" width="60" height="4" rx="2" fill="#4a411d" fill-opacity=".22" />
+    </g>
+    <g>
+      <rect x="1048" y="82" width="94" height="86" rx="4" fill="#fbdcdb" />
+      <rect x="1058" y="94" width="46" height="5" rx="2.5" fill="#573738" fill-opacity=".5" />
+      <rect x="1058" y="110" width="58" height="4" rx="2" fill="#573738" fill-opacity=".22" />
+      <rect x="1058" y="122" width="64" height="4" rx="2" fill="#573738" fill-opacity=".22" />
+    </g>
+    <g>
+      <rect x="940" y="184" width="94" height="86" rx="4" fill="#d7e5f4" />
+      <rect x="950" y="196" width="44" height="5" rx="2.5" fill="#2c4257" fill-opacity=".5" />
+      <rect x="950" y="212" width="62" height="4" rx="2" fill="#2c4257" fill-opacity=".22" />
+      <rect x="950" y="224" width="50" height="4" rx="2" fill="#2c4257" fill-opacity=".22" />
+    </g>
+    <g>
+      <rect x="1048" y="184" width="94" height="86" rx="4" fill="#d8ecd9" />
+      <rect x="1058" y="196" width="38" height="5" rx="2.5" fill="#2e4a35" fill-opacity=".5" />
+      <rect x="1058" y="212" width="64" height="4" rx="2" fill="#2e4a35" fill-opacity=".22" />
+      <rect x="1058" y="224" width="46" height="4" rx="2" fill="#2e4a35" fill-opacity=".22" />
+      <rect x="1058" y="236" width="58" height="4" rx="2" fill="#2e4a35" fill-opacity=".22" />
+    </g>
+  </g>
+  <rect x="700.5" y="24.5" width="459" height="299" rx="12" fill="none" stroke="#000000" stroke-opacity=".08" />
+
+  <!-- The editor you are actually working in. -->
+  <g filter="url(#windowShadow)">
+    <rect x="48" y="44" width="864" height="496" rx="14" fill="#1e1e23" />
+  </g>
+  <rect x="48.5" y="44.5" width="863" height="495" rx="14" fill="none" stroke="#ffffff" stroke-opacity=".08" />
+  <circle cx="76" cy="66" r="5.5" fill="#ff5f57" />
+  <circle cx="96" cy="66" r="5.5" fill="#febc2e" />
+  <circle cx="116" cy="66" r="5.5" fill="#28c840" />
+  <rect x="152" y="58" width="96" height="17" rx="5" fill="#ffffff" fill-opacity=".07" />
+  <line x1="48" y1="88" x2="912" y2="88" stroke="#ffffff" stroke-opacity=".07" />
+
+  <g>
+    <rect x="88" y="116" width="48" height="8" rx="3" fill="#c792ea" />
+    <rect x="146" y="116" width="110" height="8" rx="3" fill="#82aaff" />
+    <rect x="266" y="116" width="16" height="8" rx="3" fill="#6b6b78" />
+    <rect x="292" y="116" width="64" height="8" rx="3" fill="#c3e88d" />
+
+    <rect x="112" y="144" width="86" height="8" rx="3" fill="#82aaff" />
+    <rect x="208" y="144" width="140" height="8" rx="3" fill="#e6e6ec" fill-opacity=".5" />
+
+    <rect x="112" y="172" width="60" height="8" rx="3" fill="#c792ea" />
+    <rect x="182" y="172" width="96" height="8" rx="3" fill="#f78c6c" />
+
+    <rect x="136" y="200" width="120" height="8" rx="3" fill="#e6e6ec" fill-opacity=".45" />
+    <rect x="266" y="200" width="54" height="8" rx="3" fill="#c3e88d" />
+
+    <rect x="136" y="228" width="74" height="8" rx="3" fill="#82aaff" />
+    <rect x="220" y="228" width="180" height="8" rx="3" fill="#e6e6ec" fill-opacity=".4" />
+
+    <rect x="112" y="256" width="40" height="8" rx="3" fill="#6b6b78" />
+
+    <rect x="112" y="284" width="96" height="8" rx="3" fill="#c792ea" />
+    <rect x="218" y="284" width="130" height="8" rx="3" fill="#82aaff" />
+    <rect x="358" y="284" width="60" height="8" rx="3" fill="#c3e88d" />
+
+    <rect x="136" y="312" width="150" height="8" rx="3" fill="#e6e6ec" fill-opacity=".45" />
+    <rect x="136" y="340" width="90" height="8" rx="3" fill="#f78c6c" />
+    <rect x="236" y="340" width="120" height="8" rx="3" fill="#e6e6ec" fill-opacity=".4" />
+    <rect x="112" y="368" width="64" height="8" rx="3" fill="#82aaff" />
+    <rect x="186" y="368" width="200" height="8" rx="3" fill="#e6e6ec" fill-opacity=".45" />
+    <rect x="88" y="396" width="40" height="8" rx="3" fill="#c792ea" />
+    <rect x="138" y="396" width="110" height="8" rx="3" fill="#82aaff" />
+    <rect x="112" y="424" width="170" height="8" rx="3" fill="#e6e6ec" fill-opacity=".4" />
+    <rect x="88" y="452" width="60" height="8" rx="3" fill="#6b6b78" />
+    <rect x="112" y="480" width="128" height="8" rx="3" fill="#e6e6ec" fill-opacity=".4" />
+  </g>
+
+  <!-- The note. On top of all of it, and never quite square to the desk. -->
+  <g transform="rotate(-1.4 860 447)">
+    <g filter="url(#paperShadow)">
+      <rect x="690" y="318" width="340" height="258" rx="5" fill="#fbf1b0" />
+    </g>
+    <rect x="690" y="318" width="340" height="258" rx="5" fill="url(#sheen)" />
+
+    <text x="718" y="356" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+          font-size="12.5" font-weight="600" letter-spacing="1.15" fill="#4a411d">TODAY</text>
+    <line x1="718" y1="372" x2="1002" y2="372" stroke="#4a411d" stroke-opacity=".14" />
+
+    <g font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15.5" fill="#4a411d">
+      <rect x="718" y="399" width="15" height="15" rx="3.5" fill="none" stroke="#4a411d" stroke-opacity=".34" stroke-width="1.6" />
+      <text x="748" y="411">Fix pixel issue</text>
+
+      <rect x="718" y="437" width="15" height="15" rx="3.5" fill="none" stroke="#4a411d" stroke-opacity=".34" stroke-width="1.6" />
+      <text x="748" y="449">Reply to JK</text>
+
+      <rect x="718" y="475" width="15" height="15" rx="3.5" fill="none" stroke="#4a411d" stroke-opacity=".34" stroke-width="1.6" />
+      <rect class="boxFill" x="718" y="475" width="15" height="15" rx="3.5" fill="#4a411d" fill-opacity=".12" />
+      <path class="check" d="M721.8 482.8 L726.2 487.2 L730.6 478.6" fill="none" stroke="#4a411d"
+            stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+      <text class="doneText" x="748" y="487">Deploy MCP</text>
+      <line class="strike" x1="748" y1="482.5" x2="840" y2="482.5" stroke="#4a411d" stroke-opacity=".45" stroke-width="1.5" />
+
+      <text x="718" y="529" fill="#4a411d" fill-opacity=".9">→ ask design about tracking</text>
+    </g>
+  </g>
+</svg>

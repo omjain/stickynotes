@@ -45,8 +45,6 @@ export function PaperEditor({ value, onChange, placeholder, className, ref }: Pr
   const rows = useRef<(HTMLInputElement | null)[]>([])
   const caret = useRef<Caret | null>(null)
 
-  rows.current.length = lines.length
-
   const applyCaret = () => {
     const want = caret.current
     if (!want) return
@@ -82,15 +80,20 @@ export function PaperEditor({ value, onChange, placeholder, className, ref }: Pr
     applyCaret()
   }
 
-  const handleChange = (index: number, raw: string) => {
+  const handleChange = (index: number, raw: string, rawCaret: number) => {
     const line = lines[index]
     const next = [...lines]
 
     if (line.task === 'none') {
       const promoted = taskShortcut(raw)
       if (promoted) {
+        // The marker is removed from the text, so the caret has to come back by
+        // exactly that many characters. Typing `[`, `]`, space leaves it at 0;
+        // an insertion that arrives all at once (dictation, IME, autocomplete)
+        // leaves it after the text that came with it.
+        const stripped = raw.length - promoted.text.length
         next[index] = promoted
-        commit(next, { index, offset: 0 })
+        commit(next, { index, offset: Math.max(0, rawCaret - stripped) })
         return
       }
     }
@@ -274,7 +277,13 @@ export function PaperEditor({ value, onChange, placeholder, className, ref }: Pr
             value={line.text}
             placeholder={lines.length === 1 && index === 0 ? placeholder : undefined}
             aria-label={`Line ${index + 1}`}
-            onChange={(event) => handleChange(index, event.target.value)}
+            onChange={(event) =>
+              handleChange(
+                index,
+                event.target.value,
+                event.target.selectionStart ?? event.target.value.length,
+              )
+            }
             onKeyDown={(event) => handleKeyDown(index, event)}
             onPaste={(event) => handlePaste(index, event)}
           />
