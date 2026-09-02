@@ -1,0 +1,156 @@
+/* The desk the paper sits on. Main window only — the floating window has no
+   shell, it is all note. */
+
+.desk {
+  min-height: 100dvh;
+  padding: 34px clamp(20px, 5vw, 56px) 96px;
+}
+
+.desk__bar {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+  max-width: 1180px;
+  margin: 0 auto 30px;
+}
+
+.desk__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.desk__hint {
+  margin: 0;
+  font-size: 13px;
+  color: var(--desk-ink-soft);
+}
+
+.desk__spacer {
+  flex: 1 1 auto;
+}
+
+.desk__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(236px, 1fr));
+  gap: 28px;
+  max-width: 1180px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* --- a note on the desk -------------------------------------------------- */
+
+.card {
+  --tilt: 0deg;
+  padding: 17px 18px 9px;
+  transform: rotate(var(--tilt));
+  transition:
+    transform 0.3s var(--ease-paper),
+    box-shadow 0.3s var(--ease-paper);
+}
+
+.card:hover,
+.card:focus-within {
+  /* Straightens and lifts, the way you square up a sheet before reading it. */
+  transform: rotate(0deg) translateY(-3px);
+  box-shadow: var(--shadow-lift), inset 0 -1.5px 0 var(--note-lip);
+}
+
+.card__body {
+  min-height: 116px;
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 11px 0 4px;
+}
+
+/* A note that is out floating stays visibly claimed on the desk. */
+.card--floating {
+  box-shadow:
+    var(--shadow-rest),
+    inset 0 -1.5px 0 var(--note-lip),
+    inset 0 0 0 1.5px color-mix(in srgb, var(--note-ink) 24%, transparent);
+}
+
+.card--floating .paper__tray {
+  opacity: 1;
+}
+
+/* The tray itself lives in paper.css — it belongs to the sheet, and the
+   floating window uses it too. The desk only decides when it shows. */
+.card .paper__tray {
+  opacity: 0;
+}
+
+.card:hover .paper__tray,
+.card:focus-within .paper__tray {
+  opacity: 1;
+}
+
+/* --- desk controls ------------------------------------------------------- */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: var(--radius-control);
+  font-size: 13.5px;
+  font-weight: 500;
+  background: var(--desk-raise);
+  box-shadow:
+    0 1px 2px rgba(60, 50, 36, 0.07),
+    inset 0 0 0 1px var(--desk-line);
+  transition:
+    transform 0.15s var(--ease-paper),
+    background 0.15s;
+}
+
+.button:hover {
+  background: var(--desk-raise-hover);
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+/* --- empty desk ---------------------------------------------------------- */
+
+.empty {
+  grid-column: 1 / -1;
+  display: grid;
+  place-items: center;
+  gap: 4px;
+  min-height: 220px;
+  padding: 40px 20px;
+  border-radius: var(--radius-paper);
+  border: 1.5px dashed var(--desk-line);
+  color: var(--desk-ink-soft);
+  text-align: center;
+  font-size: 13.5px;
+}
+
+.empty__lead {
+  color: var(--desk-ink);
+  font-size: 14.5px;
+}
+
+/* --- transient messages -------------------------------------------------- */
+
+.notice {
+  max-width: 1180px;
+  margin: 0 auto 22px;
+  padding: 11px 14px;
+  border-radius: var(--radius-control);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--desk-ink);
+  background: var(--desk-raise);
+  box-shadow: inset 0 0 0 1px var(--desk-line);
+}
+
+.notice__title {
+  font-weight: 600;
+}

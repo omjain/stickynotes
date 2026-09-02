@@ -1,0 +1,69 @@
+/* Minimal reset. Adopted into every document, including the floating window,
+   which starts with no stylesheet of its own. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--desk-ink);
+  background: var(--desk-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+textarea {
+  resize: none;
+}
+
+kbd {
+  font: inherit;
+  font-size: 0.85em;
+  font-weight: 500;
+  padding: 1px 5px;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1px var(--desk-line);
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
