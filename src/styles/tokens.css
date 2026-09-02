@@ -1,0 +1,49 @@
+/*
+ * Design tokens. Adopted into every document that renders a note — the
+ * workspace, the Picture-in-Picture window, and later a native webview.
+ *
+ * The desk follows the system theme. The paper does not: paper is paper.
+ */
+
+:root {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+
+  --desk-bg: #f2efe9;
+  --desk-ink: #2b2925;
+  --desk-ink-soft: #8b8478;
+  --desk-line: rgba(43, 41, 37, 0.1);
+  --desk-raise: #fbfaf7;
+  --desk-raise-hover: #ffffff;
+
+  /* Three layers, because a single blurred box never reads as a cast shadow. */
+  --shadow-rest: 0 1px 1px rgba(60, 50, 36, 0.06),
+    0 5px 12px -6px rgba(60, 50, 36, 0.18),
+    0 14px 28px -14px rgba(60, 50, 36, 0.14);
+  --shadow-lift: 0 2px 3px rgba(60, 50, 36, 0.07),
+    0 12px 22px -8px rgba(60, 50, 36, 0.22),
+    0 28px 50px -18px rgba(60, 50, 36, 0.18);
+
+  --radius-paper: 3px;
+  --radius-control: 7px;
+
+  --ease-paper: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --desk-bg: #1a1917;
+    --desk-ink: #e9e5dd;
+    --desk-ink-soft: #8b857a;
+    --desk-line: rgba(233, 229, 221, 0.11);
+    --desk-raise: #24231f;
+    --desk-raise-hover: #2d2b26;
+
+    --shadow-rest: 0 1px 1px rgba(0, 0, 0, 0.32),
+      0 6px 14px -6px rgba(0, 0, 0, 0.5), 0 16px 32px -14px rgba(0, 0, 0, 0.45);
+    --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.36),
+      0 14px 26px -8px rgba(0, 0, 0, 0.55), 0 32px 56px -18px rgba(0, 0, 0, 0.5);
+  }
+}
